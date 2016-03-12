@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html ng-app="webapp">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="user-scalable=no, width=device-width, minimum-scale=1, maximum-scale=1" />
@@ -12,8 +12,10 @@
     <link rel="stylesheet" type="text/css" href="css/font-awesome-4.5.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-3.3.5/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    
     <script src="js/jquery-2.1.1/jquery.min.js"></script>
     <script src="js/bootstrap-3.3.5/bootstrap.min.js"></script>
+    <script src="js/angular-1.2.10/angular.min.js"></script>
 <style type="text/css">
 	body {
     	padding-top: 75px;
@@ -86,7 +88,7 @@
 
 </head>
 
-<body>
+<body ng-controller="mainController">
 	<!--Navigation bar-->
 	<div class="navbar navbar-default navbar-fixed-top hidden-print" role="navigation" data-offset="50">
       <div class="container">
@@ -104,7 +106,7 @@
             <li><a href="#introduction">Introduction</a></li>
             <li><a href="#autodesk">Autodesk Life</a></li>
             <li><a href="#professional">Professional Life</a></li>
-            <li><a href="#social">Social Life</a></li>
+            <li><a href="#footprint">Internet Footprint</a></li>
             <li><a href="#hobby">Hobby</a></li>
           </ul>
         </div><!--/.nav-collapse -->
@@ -113,16 +115,19 @@
 
 <!--Introduction-->
 <div class="container" id="introduction"> 
-  <div class="row">
-          <div class="hidden-xs col-sm-3">
-          <img class="img-circle img-responsive" src="./img/jeffreysun.jpg"/>
+
+  <div class="jumbotron">
+    <div class="row">
+            <div class="hidden-xs col-sm-3">
+            <img class="img-circle img-responsive" src="./img/jeffreysun.jpg"/>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <h1 id="welcome" class="hidden-print">Welcome!</h1>
+                <p>I work as a sensor engineer and development manager in Autodesk. I've been developing Autodesk Products since 2006. I take the architect role in the homestyler backend platform. Autodesk is a great place to work. My colleagues have been all around the world: Shanghai, Beijing, San Francisco, Singapore, Novi, Pune, Tel Aviv.</p>
+            </div>
           </div>
-          <div class="col-xs-12 col-sm-9">
-              <h1 id="welcome" class="hidden-print">Welcome!</h1>
-              <p>I've been developing Autodesk Products since 2006. I work as a sensor engineer and development manager. I take the architect role of the whole homestyler backend platform. Autodesk is a great place to work. My colleagues have been all around the world: San Francisco, Novi, Pune, Tel Aviv.</p>
-          </div>
-        </div>
-</div>
+    </div>
+  </div>
 
 <!--Autodesk Life-->
 <div class="container" id="autodesk"> 
@@ -215,76 +220,36 @@
   </div>
 </div>
 
-
-
 <!--Professional Life-->
 <div class="container" id="professional"> 
   <h1>Professional Life</h1>
   <div class="lead">
-
+  A wide range of skill set are built up during the work on the multipe projects. 
   </div>
 
-  <div class="col-sm-6 col-md-4">
+  <div class="col-sm-6 col-md-4" ng-repeat="domain in professionals">
     <div class="panel panel-default unbreakable">
       <div class="panel-heading">
-        <h3 class="panel-title">Program Languages</h3>
+        <h3 class="panel-title">{{domain.title}}</h3>
       </div>
-      <div class="panel-body">C • C++ • Nodejs/Javascript • Scala • GO • Assembly</div>
-    </div>
-  </div>
-
-  <div class="col-sm-6 col-md-4">
-    <div class="panel panel-default unbreakable">
-      <div class="panel-heading">
-        <h3 class="panel-title">Databases</h3>
-      </div>
-      <div class="panel-body">MongoDB • Redis • Couchbase • Mysql • Memcached • RIAK</div>
-    </div>
-  </div>
-
-  <div class="col-sm-6 col-md-4">
-    <div class="panel panel-default unbreakable">
-      <div class="panel-heading">
-        <h3 class="panel-title">Development Tools</h3>
-      </div>
-      <div class="panel-body">Visual Studio • XCode • Android Studio • IntelliJ IDEA • Sublime • Notepad++ • ArduinoIDE • Perforce • Git • SVN • SourceTree • JIRA • WIKI • Zoc6 • Vagrant • Docker • Beyond Compare • Incredibuilder</div>
-    </div>
-  </div>
-
-  <div class="col-sm-6 col-md-4">
-    <div class="panel panel-default unbreakable">
-      <div class="panel-heading">
-        <h3 class="panel-title">Operation Tools</h3>
-      </div>
-      <div class="panel-body">Bamboo • Nagios • Teamcity • Splunk • Zoc6</div>
-    </div>
-  </div>
-
-  <div class="col-sm-6 col-md-4">
-    <div class="panel panel-default unbreakable">
-      <div class="panel-heading">
-        <h3 class="panel-title">Platforms</h3>
-      </div>
-      <div class="panel-body">Windows • Mac OS X• Linux • Android • iOS</div>
+      <div class="panel-body"><span class="badge" ng-repeat="item in domain.items">{{item}}</span></div>
     </div>
   </div>
 </div>
 
 <!--Social Life-->
-<div class="container" id="social"> 
-  <h1>Social Life</h1>
-  <div >
-  <p>
-  <a href="https://sunzhongkui.wordpress.com">Blog</a> · 
-  <a href="#">Personal Page</a> · 
-  <a href="http://stackexchange.com/users/949569/jeffrey">Stack Overflow</a> · 
-  <a href="http://forum.arduino.cc/index.php?PHPSESSID=cdt8se0ke4c188l439so4ceb64&action=profile;u=32695">Arduino</a> · 
-  <a href="http://www.linkedin.com/profile/view?id=202543153">LinkedIn</a> 
-  </p>
+<div class="container" id="footprint"> 
+  <h1>Internet Footprint</h1>
+  <div>
+    <p>
+    <a href="https://sunzhongkui.wordpress.com">Blog</a> · 
+    <a href="#">Personal Page</a> · 
+    <a href="http://stackexchange.com/users/949569/jeffrey">Stack Overflow</a> · 
+    <a href="http://forum.arduino.cc/index.php?PHPSESSID=cdt8se0ke4c188l439so4ceb64&action=profile;u=32695">Arduino</a> · 
+    <a href="http://www.linkedin.com/profile/view?id=202543153">LinkedIn</a> 
+    </p>
   </div>
 </div>
-
-
 
 <!--Hobby-->
 <div class="container" id="hobby"> 
@@ -294,6 +259,77 @@
   </div>
   <p></p>
 </div>
+<div class="container text-center">
+  <hr>
+  <p>Last Updated on March 12th, 2016.</p></p>
+</div>
+
+<script type="text/javascript">
+  var app = angular.module('webapp',  [
+    ]);
+
+    app.run(["$rootScope",
+        function ($rootScope) {
+
+        }] );
+    app.controller('mainController', [
+        '$scope',
+        function($scope) {
+          $scope.professionals = [];
+          $scope.professionals.push({
+            "title": "Program Languages",
+            "items":["C","C++","Nodejs/Javascript","Scala","GO","Assembly"]
+          });
+          $scope.professionals.push({
+            "title": "Platforms",
+            "items":["Windows","Mac OS X","Linux","Android","iOS"]
+          });
+          $scope.professionals.push({
+            "title": "Databases",
+            "items":["MongoDB","Redis","Couchbase","Mysql","Memcached"]
+          });
+
+          $scope.professionals.push({
+            "title": "Web Technologies",
+            "items":["HTML5","LESS","Bootstrap","Angularjs","Jquery","Underscore","WebGL","Threejs","grunt","Websocket","WebWorker","CDN", "SEO", "Performance Tuning", "Google Analytics", "Mixpanel"]
+          });
+          $scope.professionals.push({
+            "title": "Cloud Service Technologies",
+            "items":["SAAS","PAAS","Macro Service","Cloud Computing","Haproxy","Varnish","Nginx","Appache","ElasticSearch","Docker","Fault Tolerance","Replica","Sharding","Load Balancing","Reverse Proxy","REST","SOAP","OAuth","JWT/JWE","SSO"]
+          });
+          $scope.professionals.push({
+            "title": "Development Tools",
+            "items":["Visual Studio","XCode","Android Studio","IntelliJ IDEA","Sublime","Notepad++","ArduinoIDE","Perforce","Git","SVN","SourceTree","JIRA","WIKI","Zoc6","Vagrant","Docker","Beyond Compare","Incredibuilder","make"]
+          });
+
+          $scope.professionals.push({
+            "title": "DevOps",
+            "items":["Bamboo","Nagios","Teamcity","Pingdom","Geckoboard","Splunk","ELK","Zoc6","SSH", "RRDTool","cronjob","CI/CD", "Data Backup","Security","Monitor","Alert"]
+          });
+
+          $scope.professionals.push({
+            "title": "Cloud Platforms",
+            "items":["AWS-EC2","AWS-S3","AWS-RDS","AWS-Glacier","AWS-ElasticCache","AWS-SQS","AWS-SNS", "AWS-CloudFront", "Aliyun"]
+          });
+
+
+          $scope.professionals.push({
+            "title": "Mobile Technologies",
+            "items":["Phonegap","Mobile Web"]
+          });
+
+          $scope.professionals.push({
+            "title": "Desktop Technologies",
+            "items":["COM","Multi-Threads","STL","Boost","Qt","MFC","Cross Platform","WCF","UnitTest","CodeCoverage","OpenGL","TroubleShooting"]
+          });
+
+          $scope.professionals.push({
+            "title": "Miscs",
+            "items":["Scrum","Kanban","Workflow","Macro Service","API Design","Object Oriented Design","MVC Patterns", "NoSQL", "Distributed Systems", "3D-Print"]
+          });
+
+        }]);
+</script>
 
 </body>
 </html>
